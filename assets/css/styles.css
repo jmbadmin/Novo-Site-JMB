@@ -334,13 +334,32 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   width: calc(100% - 2 * var(--pad-inline));
   max-width: var(--container);
   scroll-margin-top: var(--header-h);
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(34px) saturate(1.6);
+  -webkit-backdrop-filter: blur(34px) saturate(1.6);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: var(--radius-card);
   box-shadow: 0 24px 60px -24px rgba(11, 16, 37, 0.45);
   padding: clamp(1.5rem, 2.8vw, 2.25rem) clamp(1.5rem, 2.8vw, 2.5rem);
+}
+/* Legibility treatment for text sitting on the translucent panel:
+   a soft light halo keeps dark type readable over the photo's darker areas. */
+.hero__stats-panel .eyebrow,
+.hero__stats-panel .stat__num,
+.hero__stats-panel .stat__label {
+  text-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.95),
+    0 1px 10px rgba(255, 255, 255, 0.9),
+    0 4px 26px rgba(255, 255, 255, 0.7);
+}
+.hero__stats-panel .stat__num { color: var(--midnight); }
+.hero__stats-panel .stat__label {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+.hero__stats-panel .stat + .stat::before {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
 .hero__scroll {
