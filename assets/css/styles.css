@@ -334,7 +334,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   width: calc(100% - 2 * var(--pad-inline));
   max-width: var(--container);
   scroll-margin-top: var(--header-h);
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
   border: 1px solid rgba(255, 255, 255, 0.6);
