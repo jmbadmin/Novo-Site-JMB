@@ -246,12 +246,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   padding-top: calc(var(--header-h) + clamp(2.5rem, 7vw, 6rem));
   padding-bottom: clamp(3.5rem, 7vw, 6rem);
 }
-.hero__inner {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: center;
-}
+.hero__inner { display: block; }
+.hero__copy { max-width: 46rem; }
 .hero__title {
   font-family: var(--font-display);
   font-weight: 400;
@@ -284,28 +280,66 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 .proof__mark { width: 14px; height: 14px; color: var(--brass); flex: none; }
 
-/* Hero visual — the signature deal-motif */
-.hero__visual { position: relative; display: flex; flex-direction: column; align-items: center; }
-.dealmark { width: min(100%, 420px); height: auto; overflow: visible; }
-.dealmark__dot { fill: var(--ink); }
-.dealmark__dot--b { fill: var(--ink); opacity: 0.86; }
-.dealmark__link { stroke: var(--brass); stroke-width: 2; }
-.dealmark__node { fill: var(--brass); }
-.dealmark__ring { fill: none; stroke: var(--mist-strong); stroke-width: 1; opacity: 0.7; }
-.dealmark__ring--inner { stroke-dasharray: 2 7; opacity: 0.5; }
-
-.hero__tags {
-  display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;
-  margin-top: 1.75rem;
+/* Hero photo — full-bleed institutional image with brand-toned scrim */
+.hero__photo {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: clamp(2.75rem, 6vw, 4.5rem);
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  background: var(--midnight);
+  border-block: 1px solid var(--mist);
 }
-.hero__tags li {
+@media (max-width: 720px) {
+  .hero__photo { aspect-ratio: 4 / 5; }
+}
+.hero__photo-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+  filter: grayscale(0.4) saturate(0.85) contrast(1.06) brightness(0.96);
+  transform-origin: 50% 45%;
+  animation: hero-kenburns 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.hero__photo-scrim {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(100deg, rgba(11, 16, 37, 0.55) 0%, rgba(11, 16, 37, 0.12) 45%, rgba(11, 16, 37, 0.4) 100%),
+    linear-gradient(0deg, rgba(11, 16, 37, 0.65) 0%, rgba(11, 16, 37, 0) 30%);
+  mix-blend-mode: multiply;
+}
+.hero__photo-scrim::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--ink);
+  mix-blend-mode: color;
+  opacity: 0.5;
+}
+.hero__photo-tags {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: flex; gap: 0.6rem; flex-wrap: wrap;
+  padding: clamp(1.1rem, 3vw, 1.75rem) var(--pad-inline);
+  max-width: var(--container);
+  margin-inline: auto;
+}
+.hero__photo-tags span {
   font-family: var(--font-mono);
   font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--slate);
+  color: #fff;
   padding: 0.4rem 0.75rem;
-  border: 1px solid var(--mist);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 100px;
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+@keyframes hero-kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.09); }
 }
 
 .hero__scroll {
@@ -554,22 +588,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
 .reveal.in-view { opacity: 1; transform: none; }
 
-/* ---------- Load animation for dealmark ---------- */
-.dealmark__dot--a { transform-box: fill-box; transform-origin: center; animation: dot-in-a 0.9s var(--ease) 0.15s both; }
-.dealmark__dot--b { animation: dot-in-b 0.9s var(--ease) 0.3s both; }
-.dealmark__link { stroke-dasharray: 260; stroke-dashoffset: 260; animation: draw 0.8s var(--ease) 0.75s both; }
-.dealmark__node { transform-box: fill-box; transform-origin: center; animation: node-pop 0.6s var(--ease) 1.3s both; }
-@keyframes dot-in-a { from { opacity: 0; transform: translate(-26px, -26px); } to { opacity: 1; transform: none; } }
-@keyframes dot-in-b { from { opacity: 0; transform: translate(26px, 26px); } to { opacity: 0.86; transform: none; } }
-@keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes node-pop { from { opacity: 0; transform: scale(0.2); } 70% { transform: scale(1.25); } to { opacity: 1; transform: scale(1); } }
-
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
-  .hero__inner { grid-template-columns: 1fr; }
-  .hero__visual { order: -1; }
-  .dealmark { width: min(58%, 300px); }
-  .hero__tags { display: none; }
   .approach__inner { grid-template-columns: 1fr; }
   .approach__intro { position: static; }
   .international__inner { grid-template-columns: 1fr; }
@@ -605,6 +625,5 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
   .reveal { opacity: 1; transform: none; }
-  .dealmark__dot--b { opacity: 0.86; }
-  .dealmark__link { stroke-dashoffset: 0; }
+  .hero__photo-img { animation: none; transform: none; }
 }

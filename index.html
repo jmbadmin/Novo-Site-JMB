@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=2" />
 </head>
 <body id="top">
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -91,23 +91,26 @@
           </div>
           <p class="hero__proof reveal"><svg class="proof__mark" aria-hidden="true"><use href="#jmb-mark" /></svg> Membro exclusivo da World M&amp;A Alliance no Brasil</p>
         </div>
-
-        <div class="hero__visual" aria-hidden="true">
-          <svg class="dealmark" viewBox="0 0 520 520" data-dealmark>
-            <circle class="dealmark__ring" cx="260" cy="260" r="196" />
-            <circle class="dealmark__ring dealmark__ring--inner" cx="260" cy="260" r="150" />
-            <line class="dealmark__link" x1="168" y1="168" x2="352" y2="352" />
-            <circle class="dealmark__dot dealmark__dot--a" cx="168" cy="168" r="92" />
-            <circle class="dealmark__dot dealmark__dot--b" cx="352" cy="352" r="92" />
-            <circle class="dealmark__node" cx="260" cy="260" r="9" />
-          </svg>
-          <ul class="hero__tags">
-            <li>Sell-side</li>
-            <li>Private Equity</li>
-            <li>Cross-border</li>
-          </ul>
-        </div>
       </div>
+
+      <figure class="hero__photo reveal">
+        <img
+          class="hero__photo-img"
+          src="assets/img/hero-negotiation-1200.jpg"
+          srcset="assets/img/hero-negotiation-1200.jpg 1200w, assets/img/hero-negotiation.jpg 2600w"
+          sizes="100vw"
+          alt="Aperto de mãos entre dois executivos ao fechar um acordo"
+          loading="eager"
+          width="2600" height="1733"
+        />
+        <div class="hero__photo-scrim" aria-hidden="true"></div>
+        <figcaption class="hero__photo-tags">
+          <span>Sell-side</span>
+          <span>Private Equity</span>
+          <span>Cross-border</span>
+        </figcaption>
+      </figure>
+
       <a class="hero__scroll" href="#credibilidade" aria-label="Rolar para baixo">
         <span>Role</span>
         <span class="hero__scroll-line" aria-hidden="true"></span>
