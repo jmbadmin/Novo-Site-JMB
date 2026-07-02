@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=2" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=6" />
 </head>
 <body id="top">
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -94,52 +94,46 @@
       </div>
 
       <figure class="hero__photo reveal">
-        <img
-          class="hero__photo-img"
-          src="assets/img/hero-negotiation-1200.jpg"
-          srcset="assets/img/hero-negotiation-1200.jpg 1200w, assets/img/hero-negotiation.jpg 2600w"
-          sizes="100vw"
-          alt="Aperto de mãos entre dois executivos ao fechar um acordo"
-          loading="eager"
-          width="2600" height="1733"
-        />
-        <div class="hero__photo-scrim" aria-hidden="true"></div>
-        <figcaption class="hero__photo-tags">
-          <span>Sell-side</span>
-          <span>Private Equity</span>
-          <span>Cross-border</span>
-        </figcaption>
+        <div class="hero__photo-frame">
+          <img
+            class="hero__photo-img"
+            src="assets/img/hero-negotiation-1200.jpg"
+            srcset="assets/img/hero-negotiation-1200.jpg 1200w, assets/img/hero-negotiation.jpg 2600w"
+            sizes="100vw"
+            alt="Aperto de mãos entre dois executivos ao fechar um acordo"
+            loading="eager"
+            width="2600" height="1733"
+          />
+          <div class="hero__photo-scrim" aria-hidden="true"></div>
+        </div>
+
+        <div class="hero__stats-panel" id="credibilidade">
+          <p class="eyebrow reveal">Trajetória</p>
+          <dl class="stats__grid">
+            <div class="stat reveal">
+              <dt class="stat__num">US$ 2 bi<span class="stat__plus">+</span></dt>
+              <dd class="stat__label">Volume transacionado em operações de M&amp;A</dd>
+            </div>
+            <div class="stat reveal">
+              <dt class="stat__num">2012</dt>
+              <dd class="stat__label">Ano de fundação da JMB Advisors</dd>
+            </div>
+            <div class="stat reveal">
+              <dt class="stat__num">15<span class="stat__plus">+</span></dt>
+              <dd class="stat__label">Setores da economia atendidos</dd>
+            </div>
+            <div class="stat reveal">
+              <dt class="stat__num">Global</dt>
+              <dd class="stat__label">Alcance via World M&amp;A Alliance</dd>
+            </div>
+          </dl>
+        </div>
       </figure>
 
       <a class="hero__scroll" href="#credibilidade" aria-label="Rolar para baixo">
         <span>Role</span>
         <span class="hero__scroll-line" aria-hidden="true"></span>
       </a>
-    </section>
-
-    <!-- ============ CREDIBILITY / STATS ============ -->
-    <section class="stats" id="credibilidade">
-      <div class="container">
-        <p class="eyebrow reveal">Trajetória</p>
-        <dl class="stats__grid">
-          <div class="stat reveal">
-            <dt class="stat__num">US$ 2 bi<span class="stat__plus">+</span></dt>
-            <dd class="stat__label">Volume transacionado em operações de M&amp;A</dd>
-          </div>
-          <div class="stat reveal">
-            <dt class="stat__num">2012</dt>
-            <dd class="stat__label">Ano de fundação da JMB Advisors</dd>
-          </div>
-          <div class="stat reveal">
-            <dt class="stat__num">15<span class="stat__plus">+</span></dt>
-            <dd class="stat__label">Setores da economia atendidos</dd>
-          </div>
-          <div class="stat reveal">
-            <dt class="stat__num">Global</dt>
-            <dd class="stat__label">Alcance via World M&amp;A Alliance</dd>
-          </div>
-        </dl>
-      </div>
     </section>
 
     <!-- ============ SERVICES ============ -->
