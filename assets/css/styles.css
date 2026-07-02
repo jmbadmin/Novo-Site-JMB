@@ -459,19 +459,24 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   gap: clamp(2rem, 5vw, 5rem); align-items: center;
 }
 .international__visual {
-  aspect-ratio: 460 / 380;
+  aspect-ratio: 1000 / 507.209;
   background: var(--surface);
   border: 1px solid var(--mist);
   border-radius: var(--radius-card);
   display: grid; place-items: center;
-  padding: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.25rem, 3.5vw, 2.25rem);
   box-shadow: var(--shadow-card);
 }
-.network { width: 100%; height: auto; overflow: visible; }
-.network__links line { stroke: var(--mist-strong); stroke-width: 1; }
-.network__nodes circle { fill: var(--slate); }
-.network__hub { fill: var(--ink); }
-.network__hub--b { fill: var(--brass); }
+.worldmap { position: relative; width: 100%; }
+.worldmap__land { width: 100%; height: auto; display: block; }
+.worldmap__pins { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.worldmap__link { stroke: var(--brass); stroke-width: 0.7; opacity: 0.5; }
+.worldmap__node {
+  fill: var(--brass);
+  transition: r 0.25s var(--ease), fill 0.25s var(--ease);
+}
+.worldmap__node:hover { r: 6.5; fill: var(--ink); }
+.worldmap__hub { fill: var(--ink); }
 .international__copy .btn { margin-top: 2rem; }
 
 /* ---------- Transactions / tombstones ---------- */
@@ -600,7 +605,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   .approach__inner { grid-template-columns: 1fr; }
   .approach__intro { position: static; }
   .international__inner { grid-template-columns: 1fr; }
-  .international__visual { max-width: 460px; }
+  .international__visual { max-width: 600px; }
 }
 
 @media (max-width: 720px) {
