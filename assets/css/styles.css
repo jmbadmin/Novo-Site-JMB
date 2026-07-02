@@ -342,25 +342,12 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   box-shadow: 0 24px 60px -24px rgba(11, 16, 37, 0.45);
   padding: clamp(1.5rem, 2.8vw, 2.25rem) clamp(1.5rem, 2.8vw, 2.5rem);
 }
-/* Legibility treatment for text sitting on the translucent panel:
-   a soft light halo keeps dark type readable over the photo's darker areas. */
-.hero__stats-panel .eyebrow,
-.hero__stats-panel .stat__num,
-.hero__stats-panel .stat__label {
-  text-shadow:
-    0 1px 1px rgba(255, 255, 255, 0.95),
-    0 1px 10px rgba(255, 255, 255, 0.9),
-    0 4px 26px rgba(255, 255, 255, 0.7);
-}
-.hero__stats-panel .stat__num { color: var(--midnight); }
-.hero__stats-panel .stat__label {
-  color: var(--ink-soft);
-  font-weight: 600;
-}
-.hero__stats-panel .stat + .stat::before {
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-}
+/* Light type on the translucent panel, for contrast against the photo. */
+.hero__stats-panel .eyebrow { color: #fff; }
+.hero__stats-panel .eyebrow::before { background: rgba(255, 255, 255, 0.8); }
+.hero__stats-panel .stat__num { color: #fff; }
+.hero__stats-panel .stat__label { color: rgba(255, 255, 255, 0.78); }
+.hero__stats-panel .stat + .stat::before { background: rgba(255, 255, 255, 0.35); }
 
 .hero__scroll {
   display: inline-flex; align-items: center; gap: 0.75rem;
@@ -617,8 +604,13 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 
 @media (max-width: 720px) {
-  .hero__photo { margin-bottom: clamp(17rem, 50vw, 21rem); }
+  .hero__photo { margin-bottom: clamp(2.5rem, 8vw, 4rem); }
   .hero__scroll { display: none; }
+  .hero__stats-panel { top: 34%; padding: 1rem 1.15rem; }
+  .stats__grid { margin-top: 0.5rem; }
+  .stat { padding: 0.3rem 0.55rem; }
+  .stat__num { font-size: 1.9rem; }
+  .stat__label { margin-top: 0.4rem; font-size: 0.85rem; }
 }
 
 @media (max-width: 820px) {
