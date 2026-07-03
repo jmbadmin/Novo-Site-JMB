@@ -189,6 +189,9 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 .brand { color: var(--ink); display: inline-flex; align-items: center; }
 .brand__wordmark { height: 30px; aspect-ratio: 1462 / 840; width: auto; transition: opacity 0.2s var(--ease); }
+@media (min-width: 821px) {
+  .brand__wordmark { height: 51px; } /* +70% on desktop; mobile/tablet keep 30px */
+}
 .brand:hover { opacity: 0.78; }
 
 .nav__list { display: flex; gap: clamp(1.25rem, 2.5vw, 2.5rem); }
