@@ -455,36 +455,41 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
 /* ---------- International ---------- */
 .international__copy { max-width: 46rem; }
+.international__map-label { margin-top: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; }
 
-/* Full-bleed map band — width:100vw like .hero__photo. Deliberately unpadded:
-   the aspect-ratio here must match the SVG's viewBox (566.4/268.5) exactly,
-   or the image (which preserves its own ratio and letterboxes) drifts out of
+/* Map card, aligned to the content container. Deliberately unpadded: the
+   aspect-ratio here must match the SVG's viewBox (566.4/268.5) exactly, or
+   the image (which preserves its own ratio and letterboxes) drifts out of
    sync with the pins (positioned in plain % of this same box). Do not add
-   padding/border to this element — wrap .worldmap itself if inset is needed. */
+   padding to this element — wrap .worldmap itself if inset is needed. */
 .international__visual {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  margin-top: clamp(2.5rem, 6vw, 4rem);
   aspect-ratio: 566.4 / 268.5;
   background: var(--surface);
-  border-block: 1px solid var(--mist);
+  border: 1px solid var(--mist);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
 }
 
 /* World map with office pins — structure/colors/coordinates per design handoff
    (assets/mapa/README.md). Pin color is intentionally its own token, distinct
-   from the brand accent, per that spec. Pin size reduced from the handoff's
-   14px: at full page width that read as oversized. */
+   from the brand accent, per that spec. */
 .worldmap {
   --wmap-pin: #1e3a5f;
   --wmap-pin-hover: #3e6089;
-  --wmap-pin-size: 7px;
+  --wmap-pin-size: 11px;
   position: relative;
   width: 100%;
   height: 100%;
   font-family: Helvetica, Arial, sans-serif;
 }
-.worldmap__land { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; -webkit-user-drag: none; }
+.worldmap__land {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  display: block;
+  border-radius: var(--radius-card);
+  user-select: none;
+  -webkit-user-drag: none;
+}
 
 .worldmap__glow {
   position: absolute;
@@ -515,7 +520,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   height: var(--wmap-pin-size);
   border-radius: 50%;
   background: var(--wmap-pin);
-  border: 1.25px solid #fff;
+  border: 1.5px solid #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   box-sizing: border-box;
   transition: transform 0.15s ease, background 0.15s ease;
