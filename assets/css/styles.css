@@ -649,7 +649,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   gap: clamp(2.5rem, 6vw, 5rem);
   padding-bottom: clamp(3rem, 5vw, 4rem);
 }
-.footer__wordmark { height: 30px; aspect-ratio: 1462 / 840; width: auto; color: #fff; }
+.footer__wordmark { height: 51px; aspect-ratio: 1462 / 840; width: auto; color: #fff; }
 .site-footer__tag { margin-top: 1.25rem; max-width: 24rem; color: rgba(255, 255, 255, 0.6); font-size: var(--fs-sm); }
 .site-footer__linkedin {
   display: inline-flex; gap: 0.4rem; margin-top: 1.5rem;
