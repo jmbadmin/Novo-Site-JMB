@@ -454,26 +454,31 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .pillar__desc { color: var(--slate); margin-top: 0.5rem; font-size: var(--fs-sm); }
 
 /* ---------- International ---------- */
-.international__inner {
-  display: grid; grid-template-columns: 0.85fr 1.15fr;
-  gap: clamp(2rem, 5vw, 5rem); align-items: center;
-}
+.international__copy { max-width: 46rem; }
+
+/* Full-bleed map band — width:100vw like .hero__photo. Deliberately unpadded:
+   the aspect-ratio here must match the SVG's viewBox (566.4/268.5) exactly,
+   or the image (which preserves its own ratio and letterboxes) drifts out of
+   sync with the pins (positioned in plain % of this same box). Do not add
+   padding/border to this element — wrap .worldmap itself if inset is needed. */
 .international__visual {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: clamp(2.5rem, 6vw, 4rem);
   aspect-ratio: 566.4 / 268.5;
   background: var(--surface);
-  border: 1px solid var(--mist);
-  border-radius: var(--radius-card);
-  padding: clamp(1.25rem, 3.5vw, 2.25rem);
-  box-shadow: var(--shadow-card);
+  border-block: 1px solid var(--mist);
 }
 
 /* World map with office pins — structure/colors/coordinates per design handoff
    (assets/mapa/README.md). Pin color is intentionally its own token, distinct
-   from the brand accent, per that spec. */
+   from the brand accent, per that spec. Pin size reduced from the handoff's
+   14px: at full page width that read as oversized. */
 .worldmap {
   --wmap-pin: #1e3a5f;
   --wmap-pin-hover: #3e6089;
-  --wmap-pin-size: 14px;
+  --wmap-pin-size: 7px;
   position: relative;
   width: 100%;
   height: 100%;
@@ -510,7 +515,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   height: var(--wmap-pin-size);
   border-radius: 50%;
   background: var(--wmap-pin);
-  border: 2px solid #fff;
+  border: 1.25px solid #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   box-sizing: border-box;
   transition: transform 0.15s ease, background 0.15s ease;
@@ -676,8 +681,6 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 @media (max-width: 1024px) {
   .approach__inner { grid-template-columns: 1fr; }
   .approach__intro { position: static; }
-  .international__inner { grid-template-columns: 1fr; }
-  .international__visual { max-width: 600px; }
 }
 
 @media (max-width: 720px) {
