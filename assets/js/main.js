@@ -43,6 +43,29 @@
     });
   }
 
+  /* ---- World map: keep pin tooltips inside the card near the edges ---- */
+  var worldmap = document.querySelector(".worldmap");
+  if (worldmap) {
+    var mapPins = worldmap.querySelectorAll(".worldmap__pin");
+    mapPins.forEach(function (pin) {
+      var tooltip = pin.querySelector(".worldmap__tooltip");
+      if (!tooltip) return;
+      var reposition = function () {
+        tooltip.style.marginLeft = "0px";
+        var wrapRect = worldmap.getBoundingClientRect();
+        var tipRect = tooltip.getBoundingClientRect();
+        var pad = 6;
+        if (tipRect.left < wrapRect.left) {
+          tooltip.style.marginLeft = Math.round(wrapRect.left - tipRect.left + pad) + "px";
+        } else if (tipRect.right > wrapRect.right) {
+          tooltip.style.marginLeft = Math.round(wrapRect.right - tipRect.right - pad) + "px";
+        }
+      };
+      pin.addEventListener("mouseenter", reposition);
+      pin.addEventListener("focus", reposition);
+    });
+  }
+
   /* ---- Reveal on scroll ---- */
   var reveals = document.querySelectorAll(".reveal");
   if (reduceMotion || !("IntersectionObserver" in window)) {

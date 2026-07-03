@@ -459,24 +459,96 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   gap: clamp(2rem, 5vw, 5rem); align-items: center;
 }
 .international__visual {
-  aspect-ratio: 1000 / 507.209;
+  aspect-ratio: 566.4 / 268.5;
   background: var(--surface);
   border: 1px solid var(--mist);
   border-radius: var(--radius-card);
-  display: grid; place-items: center;
   padding: clamp(1.25rem, 3.5vw, 2.25rem);
   box-shadow: var(--shadow-card);
 }
-.worldmap { position: relative; width: 100%; }
-.worldmap__land { width: 100%; height: auto; display: block; }
-.worldmap__pins { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.worldmap__link { stroke: var(--brass); stroke-width: 0.7; opacity: 0.5; }
-.worldmap__node {
-  fill: var(--brass);
-  transition: r 0.25s var(--ease), fill 0.25s var(--ease);
+
+/* World map with office pins — structure/colors/coordinates per design handoff
+   (assets/mapa/README.md). Pin color is intentionally its own token, distinct
+   from the brand accent, per that spec. */
+.worldmap {
+  --wmap-pin: #1e3a5f;
+  --wmap-pin-hover: #3e6089;
+  --wmap-pin-size: 14px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-family: Helvetica, Arial, sans-serif;
 }
-.worldmap__node:hover { r: 6.5; fill: var(--ink); }
-.worldmap__hub { fill: var(--ink); }
+.worldmap__land { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; -webkit-user-drag: none; }
+
+.worldmap__glow {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(30, 58, 95, 0.7), rgba(30, 58, 95, 0) 100%);
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.worldmap__pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  border-radius: 50%;
+}
+.worldmap__pin:hover,
+.worldmap__pin:focus-visible { z-index: 100; }
+.worldmap__pin:hover + .worldmap__glow,
+.worldmap__pin:focus-visible + .worldmap__glow { opacity: 1; }
+
+.worldmap__dot {
+  display: block;
+  width: var(--wmap-pin-size);
+  height: var(--wmap-pin-size);
+  border-radius: 50%;
+  background: var(--wmap-pin);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.worldmap__pin:hover .worldmap__dot,
+.worldmap__pin:focus-visible .worldmap__dot {
+  background: var(--wmap-pin-hover);
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.45);
+  transform: scale(1.45);
+}
+
+.worldmap__tooltip {
+  position: absolute;
+  bottom: calc(100% + 9px);
+  left: 50%;
+  transform: translateX(-50%);
+  translate: 0 4px;
+  scale: 0.96;
+  background: var(--wmap-pin);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, translate 0.15s ease, scale 0.15s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.worldmap__pin:hover .worldmap__tooltip,
+.worldmap__pin:focus-visible .worldmap__tooltip {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+}
+/* Edge-aware anchoring: main.js measures overflow near the map's left/right edges
+   and nudges the tooltip back into view via an inline margin-left. */
 .international__copy .btn { margin-top: 2rem; }
 
 /* ---------- Transactions / tombstones ---------- */

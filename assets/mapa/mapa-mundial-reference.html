@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mapa Mundial — Escritórios</title>
+<style>
+  :root {
+    --pin-color: #1E3A5F;
+    --pin-color-hover: #3E6089;
+    --pin-size: 14px;
+  }
+  .map-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    aspect-ratio: 566.4 / 268.5;
+    background: transparent;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+  .map-wrap img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .map-pin {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  .map-pin:hover { z-index: 100; }
+  .map-pin__dot {
+    width: var(--pin-size);
+    height: var(--pin-size);
+    border-radius: 50%;
+    background: var(--pin-color);
+    border: 2px solid #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .map-pin:hover .map-pin__dot {
+    background: var(--pin-color-hover);
+    box-shadow: 0 2px 7px rgba(0,0,0,0.45);
+    transform: scale(1.45);
+  }
+  .map-pin__tooltip {
+    position: absolute;
+    bottom: calc(100% + 9px);
+    left: 50%;
+    transform: translate(-50%, 4px) scale(0.96);
+    background: var(--pin-color);
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .map-pin:hover .map-pin__tooltip {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+</style>
+</head>
+<body>
+
+  <div class="map-wrap">
+    <img src="world-map-base.svg" alt="Mapa mundial com escritórios" draggable="false" />
+      <div class="map-pin" style="left:88.065%; top:87.523%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Melbourne, Austrália</div>
+      </div>
+      <div class="map-pin" style="left:28.884%; top:74.86%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">São Paulo, Brasil</div>
+      </div>
+      <div class="map-pin" style="left:27.295%; top:74.86%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Londrina-PR, Brasil</div>
+      </div>
+      <div class="map-pin" style="left:44.527%; top:20.819%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Paris, França</div>
+      </div>
+      <div class="map-pin" style="left:47.21%; top:20.819%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Hamburgo, Alemanha</div>
+      </div>
+      <div class="map-pin" style="left:66.419%; top:46.331%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Mumbai, Índia</div>
+      </div>
+      <div class="map-pin" style="left:40.378%; top:18.399%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Dublin, Irlanda</div>
+      </div>
+      <div class="map-pin" style="left:46.504%; top:26.853%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Milão, Itália</div>
+      </div>
+      <div class="map-pin" style="left:84.834%; top:28.343%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Tóquio, Japão</div>
+      </div>
+      <div class="map-pin" style="left:14.107%; top:46.667%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Cidade do México, México</div>
+      </div>
+      <div class="map-pin" style="left:50.053%; top:22.346%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Varsóvia, Polônia</div>
+      </div>
+      <div class="map-pin" style="left:40.095%; top:28.343%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Lisboa, Portugal</div>
+      </div>
+      <div class="map-pin" style="left:41.525%; top:29.832%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Madrid, Espanha</div>
+      </div>
+      <div class="map-pin" style="left:45.798%; top:22.346%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">'s-Hertogenbosch, Holanda</div>
+      </div>
+      <div class="map-pin" style="left:52.895%; top:29.832%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Istambul, Turquia</div>
+      </div>
+      <div class="map-pin" style="left:41.967%; top:19.888%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Londres, Reino Unido</div>
+      </div>
+      <div class="map-pin" style="left:14.495%; top:34.339%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Houston, Estados Unidos</div>
+      </div>
+      <div class="map-pin" style="left:8.104%; top:35.829%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">San Diego, Estados Unidos</div>
+      </div>
+      <div class="map-pin" style="left:19.721%; top:28.492%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Washington, Estados Unidos</div>
+      </div>
+      <div class="map-pin" style="left:20.498%; top:27.523%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Nova York, Estados Unidos</div>
+      </div>
+      <div class="map-pin" style="left:42.32%; top:28.343%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Barcelona, Espanha</div>
+      </div>
+      <div class="map-pin" style="left:67.126%; top:38.845%;">
+        <div class="map-pin__dot"></div>
+        <div class="map-pin__tooltip">Nova Délhi, Índia</div>
+      </div>
+  </div>
+
+</body>
+</html>
