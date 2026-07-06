@@ -350,7 +350,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .hero__stats-panel .eyebrow { color: #fff; }
 .hero__stats-panel .eyebrow::before { background: rgba(255, 255, 255, 0.8); }
 .hero__stats-panel .stat__num { color: #fff; }
-.hero__stats-panel .stat__label { color: rgba(255, 255, 255, 0.78); }
+.hero__stats-panel .stat__label { color: var(--ink); }
 .hero__stats-panel .stat + .stat::before { background: rgba(255, 255, 255, 0.35); }
 
 .hero__scroll {
