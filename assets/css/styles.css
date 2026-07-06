@@ -339,8 +339,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   width: calc(100% - 2 * clamp(0.875rem, 2.5vw, 1.5rem));
   scroll-margin-top: var(--header-h);
   background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(34px) saturate(1.6);
-  -webkit-backdrop-filter: blur(34px) saturate(1.6);
+  backdrop-filter: blur(6px) saturate(1.6);
+  -webkit-backdrop-filter: blur(6px) saturate(1.6);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: var(--radius-card);
   box-shadow: 0 24px 60px -24px rgba(11, 16, 37, 0.45);
@@ -350,7 +350,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .hero__stats-panel .eyebrow { color: #fff; }
 .hero__stats-panel .eyebrow::before { background: rgba(255, 255, 255, 0.8); }
 .hero__stats-panel .stat__num { color: #fff; }
-.hero__stats-panel .stat__label { color: var(--ink); }
+.hero__stats-panel .stat__label { color: rgba(200, 210, 230, 0.88); }
 .hero__stats-panel .stat + .stat::before { background: rgba(255, 255, 255, 0.35); }
 
 .hero__scroll {
