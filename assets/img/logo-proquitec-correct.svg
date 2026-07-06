@@ -1,0 +1,10 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Quadrado azul escuro -->
+  <rect x="8" y="8" width="32" height="32" rx="3" fill="#0b1740"/>
+  <!-- Diamante laranja dentro -->
+  <g transform="translate(24, 24)">
+    <polygon points="0,-10 10,0 0,10 -10,0" fill="#e8743b"/>
+  </g>
+  <!-- Texto "Proquitec" em azul escuro -->
+  <text x="50" y="42" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="#0b1740" letter-spacing="0.5">Proquitec</text>
+</svg>
