@@ -334,7 +334,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .hero__stats-panel {
   position: absolute;
   left: 50%;
-  top: 62%;
+  top: 50%;
   transform: translateX(-50%);
   width: calc(100% - 2 * clamp(0.875rem, 2.5vw, 1.5rem));
   scroll-margin-top: var(--header-h);
