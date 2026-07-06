@@ -306,7 +306,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: 50% 45%;
-  filter: grayscale(0.4) saturate(0.85) contrast(1.06) brightness(0.96);
+  filter: grayscale(0.4) saturate(0.85) contrast(1.06) brightness(1.1);
   transform-origin: 50% 45%;
   animation: hero-kenburns 28s ease-in-out infinite alternate;
   will-change: transform;
