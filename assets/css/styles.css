@@ -597,6 +597,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   background: var(--surface);
 }
 .tombstone__logo-slot {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.5rem;
   font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.05em;
@@ -604,6 +606,13 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   color: var(--mist-strong);
   text-align: center;
   line-height: 1.4;
+  flex: 1;
+}
+.tombstone__logo-slot img {
+  height: 32px; width: auto; max-width: 100%;
+}
+.tombstone__logo-slot span {
+  font-size: 0.58rem; color: var(--slate); display: block;
 }
 .tombstone__logos-sep { color: var(--mist-strong); font-size: 0.7rem; }
 .tombstone__caption {
