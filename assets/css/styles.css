@@ -291,7 +291,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   width: 100%;
   margin-top: clamp(2.75rem, 6vw, 4.5rem);
   margin-bottom: clamp(1.25rem, 4vw, 2.75rem);
-  aspect-ratio: 3.6 / 1;
+  aspect-ratio: 2.15 / 1;
   background: var(--midnight);
   border: 1px solid var(--mist);
   border-radius: var(--radius-card);
@@ -344,7 +344,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: var(--radius-card);
   box-shadow: 0 24px 60px -24px rgba(11, 16, 37, 0.45);
-  padding: clamp(1.5rem, 2.8vw, 2.25rem) clamp(1.5rem, 2.8vw, 2.5rem);
+  padding: clamp(1.5rem, 2.8vw, 2.25rem) clamp(1.5rem, 2.8vw, 2.5rem) clamp(0.875rem, 2.5vw, 1.5rem);
 }
 /* Light type on the translucent panel, for contrast against the photo. */
 .hero__stats-panel .eyebrow { color: #fff; }
