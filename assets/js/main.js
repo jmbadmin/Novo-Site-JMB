@@ -70,23 +70,17 @@
   var carousel = document.querySelector("[data-carousel]");
   if (carousel) {
     var slides = carousel.querySelectorAll(".hero-carousel__slide");
-    var progressBar = carousel.querySelector("[data-carousel-progress]");
+    var dots = carousel.querySelectorAll("[data-carousel-dots] span");
     var current = 0;
     var total = slides.length;
     var timer = null;
 
-    var runProgress = function () {
-      if (!progressBar) return;
-      progressBar.classList.remove("is-animating");
-      void progressBar.offsetWidth; /* restart the CSS animation */
-      progressBar.classList.add("is-animating");
-    };
-
     var goTo = function (i) {
       slides[current].classList.remove("is-active");
+      if (dots[current]) dots[current].classList.remove("is-active");
       current = (i + total) % total;
       slides[current].classList.add("is-active");
-      runProgress();
+      if (dots[current]) dots[current].classList.add("is-active");
     };
 
     var stop = function () { if (timer) { window.clearInterval(timer); timer = null; } };
@@ -101,7 +95,6 @@
     carousel.addEventListener("focusin", stop);
     carousel.addEventListener("focusout", start);
 
-    runProgress();
     start();
   }
 

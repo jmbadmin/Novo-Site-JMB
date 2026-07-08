@@ -260,33 +260,68 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 .hero__copy { max-width: 46rem; }
 
-/* Hero tombstone carousel — "cortina" of proof beside the headline */
-.hero__tombstones { display: flex; flex-direction: column; gap: 1.1rem; }
-.hero-carousel { position: relative; }
-.hero-carousel__viewport { display: grid; }
+/* Hero tombstone carousel — "cortina" of proof beside the headline.
+   Dark glass panel, deliberately set apart from the light page surface. */
+.hero__tombstones { display: flex; flex-direction: column; gap: 1.35rem; }
+.hero-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background:
+    radial-gradient(120% 85% at 100% 0%, rgba(176, 137, 74, 0.22), transparent 55%),
+    linear-gradient(155deg, #1a2555 0%, var(--ink) 46%, var(--midnight) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 70px -26px rgba(11, 16, 37, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  padding: clamp(1.75rem, 3vw, 2.25rem) clamp(1.5rem, 2.5vw, 2rem) clamp(1.6rem, 2.5vw, 1.9rem);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.hero-carousel:hover { transform: translateY(-3px); box-shadow: 0 38px 84px -22px rgba(11, 16, 37, 0.68), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+.hero-carousel__watermark {
+  position: absolute; right: -12%; bottom: -18%;
+  width: 62%; height: auto; aspect-ratio: 1;
+  color: rgba(255, 255, 255, 0.045);
+  pointer-events: none;
+}
+.hero-carousel__viewport { display: grid; position: relative; z-index: 1; }
 .hero-carousel__slide {
   grid-area: 1 / 1;
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  transform: translateY(16px) scale(0.98);
+  filter: blur(6px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1s var(--ease);
   pointer-events: none;
 }
 .hero-carousel__slide.is-active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0);
   pointer-events: auto;
   z-index: 1;
 }
-.hero-carousel__progress {
-  height: 1px; margin-top: 1.25rem;
-  background: var(--mist); position: relative; overflow: hidden;
+/* Re-theme the shared .tombstone card for the dark panel */
+.hero-carousel .tombstone {
+  background: none; border: none; box-shadow: none; padding: 0; min-height: 0;
 }
-.hero-carousel__progress-bar {
-  position: absolute; inset: 0; width: 0%;
-  background: var(--brass);
+.hero-carousel .tombstone:hover { transform: none; box-shadow: none; border-color: transparent; }
+.hero-carousel .tombstone__sector { color: var(--brass-tint); }
+.hero-carousel .tombstone__deal { color: #fff; font-size: 1.28rem; }
+.hero-carousel .tombstone__logos {
+  background: #fff; border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 16px 34px -14px rgba(5, 8, 20, 0.55);
 }
-.hero-carousel__progress-bar.is-animating { animation: carouselProgress 5s linear; }
-@keyframes carouselProgress { from { width: 0%; } to { width: 100%; } }
+.hero-carousel .tombstone__logo-slot { color: rgba(21, 31, 74, 0.35); }
+.hero-carousel .tombstone__caption { color: rgba(255, 255, 255, 0.62); }
+.hero-carousel .tombstone__foot { color: rgba(255, 255, 255, 0.6); border-top-color: rgba(255, 255, 255, 0.14); }
+.hero-carousel .tombstone__seal { color: rgba(255, 255, 255, 0.28); }
+
+.hero-carousel__dots { display: flex; gap: 0.4rem; margin-top: clamp(1.4rem, 3vw, 1.85rem); position: relative; z-index: 1; }
+.hero-carousel__dots span {
+  width: 5px; height: 5px; border-radius: 3px;
+  background: rgba(255, 255, 255, 0.22);
+  transition: background 0.5s var(--ease), width 0.5s var(--ease);
+}
+.hero-carousel__dots span.is-active { width: 18px; background: var(--brass-tint); }
+
 .hero-carousel__link {
   align-self: flex-start;
   display: inline-flex; align-items: center; gap: 0.5rem;
