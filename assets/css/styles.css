@@ -183,6 +183,12 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   -webkit-backdrop-filter: saturate(1.4) blur(14px);
   border-bottom-color: var(--mist);
 }
+/* Light type while the header floats over the hero photo band, unscrolled */
+.site-header--on-photo:not(.is-scrolled) .brand { color: #fff; }
+.site-header--on-photo:not(.is-scrolled) .nav__list a { color: rgba(255, 255, 255, 0.92); }
+.site-header--on-photo:not(.is-scrolled) .nav__list a:hover { color: var(--brass-tint); }
+.site-header--on-photo:not(.is-scrolled) .nav__list a::after { background: var(--brass-tint); }
+.site-header--on-photo:not(.is-scrolled) .menu-toggle span { background: #fff; }
 .site-header__inner {
   display: flex; align-items: center; justify-content: space-between;
   gap: 1.5rem; height: var(--header-h);
@@ -246,9 +252,38 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  padding-top: calc(var(--header-h) + clamp(2.5rem, 7vw, 6rem));
   padding-bottom: clamp(3.5rem, 7vw, 6rem);
 }
+
+/* Full-bleed photo band behind the headline + carousel */
+.hero__intro {
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(var(--header-h) + clamp(2.5rem, 7vw, 6rem));
+  padding-bottom: clamp(3rem, 7vw, 5.5rem);
+}
+.hero__intro-bg { position: absolute; inset: 0; z-index: 0; background: var(--midnight); }
+.hero__intro-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 30%;
+}
+.hero__intro-scrim {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(9, 13, 33, 0.86) 0%, rgba(11, 16, 37, 0.78) 45%, rgba(9, 13, 33, 0.9) 100%),
+    radial-gradient(120% 70% at 8% 0%, rgba(176, 137, 74, 0.16), transparent 55%);
+}
+.hero__intro .hero__inner { position: relative; z-index: 1; }
+.hero__intro .eyebrow { color: var(--brass-tint); }
+.hero__intro .eyebrow::before { background: var(--brass-tint); }
+.hero__intro .hero__title { color: #fff; }
+.hero__intro .hero__title em { color: var(--brass-tint); }
+.hero__intro .hero__lede { color: rgba(255, 255, 255, 0.76); }
+.hero__intro .hero__proof { color: rgba(255, 255, 255, 0.72); border-top-color: rgba(255, 255, 255, 0.18); }
+.hero__intro .proof__mark { color: var(--brass-tint); }
+.hero__intro .btn--ghost { color: #fff; border-color: rgba(255, 255, 255, 0.35); }
+.hero__intro .btn--ghost:hover { border-color: #fff; }
+
 .hero__inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
