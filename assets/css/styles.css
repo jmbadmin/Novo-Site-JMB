@@ -249,8 +249,58 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   padding-top: calc(var(--header-h) + clamp(2.5rem, 7vw, 6rem));
   padding-bottom: clamp(3.5rem, 7vw, 6rem);
 }
-.hero__inner { display: block; }
+.hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 4rem);
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .hero__inner { grid-template-columns: minmax(0, 1fr) minmax(320px, 380px); }
+}
 .hero__copy { max-width: 46rem; }
+
+/* Hero tombstone carousel — "cortina" of proof beside the headline */
+.hero__tombstones { display: flex; flex-direction: column; gap: 1.1rem; }
+.hero-carousel { position: relative; }
+.hero-carousel__viewport { display: grid; }
+.hero-carousel__slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  pointer-events: none;
+}
+.hero-carousel__slide.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  z-index: 1;
+}
+.hero-carousel__progress {
+  height: 1px; margin-top: 1.25rem;
+  background: var(--mist); position: relative; overflow: hidden;
+}
+.hero-carousel__progress-bar {
+  position: absolute; inset: 0; width: 0%;
+  background: var(--brass);
+}
+.hero-carousel__progress-bar.is-animating { animation: carouselProgress 5s linear; }
+@keyframes carouselProgress { from { width: 0%; } to { width: 100%; } }
+.hero-carousel__link {
+  align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--slate);
+  transition: color 0.25s var(--ease), gap 0.25s var(--ease);
+}
+.hero-carousel__link:hover { color: var(--ink); gap: 0.75rem; }
+.hero-carousel__link span { transition: transform 0.25s var(--ease); }
+.hero-carousel__link:hover span { transform: translateX(3px); }
+@media (max-width: 1023px) {
+  .hero-carousel { max-width: 420px; }
+}
 .hero__title {
   font-family: var(--font-display);
   font-weight: 400;
@@ -555,8 +605,26 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
    and nudges the tooltip back into view via an inline margin-left. */
 .international__copy .btn { margin-top: 2rem; }
 
+/* ---------- Page hero (transacoes.html) ---------- */
+.page-hero {
+  padding-top: calc(var(--header-h) + clamp(2rem, 5vw, 3.5rem));
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.page-hero__back {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
+  transition: color 0.25s var(--ease), gap 0.25s var(--ease);
+}
+.page-hero__back:hover { color: var(--ink); gap: 0.75rem; }
+.page-hero__back span { transition: transform 0.25s var(--ease); }
+.page-hero__back:hover span { transform: translateX(-3px); }
+
 /* ---------- Transactions / tombstones ---------- */
 .transactions { background: var(--surface); border-block: 1px solid var(--mist); }
+.transactions--page { border-top: none; padding-top: 0; }
 .tombstones {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

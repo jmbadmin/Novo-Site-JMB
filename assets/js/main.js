@@ -66,6 +66,45 @@
     });
   }
 
+  /* ---- Hero tombstone carousel ---- */
+  var carousel = document.querySelector("[data-carousel]");
+  if (carousel) {
+    var slides = carousel.querySelectorAll(".hero-carousel__slide");
+    var progressBar = carousel.querySelector("[data-carousel-progress]");
+    var current = 0;
+    var total = slides.length;
+    var timer = null;
+
+    var runProgress = function () {
+      if (!progressBar) return;
+      progressBar.classList.remove("is-animating");
+      void progressBar.offsetWidth; /* restart the CSS animation */
+      progressBar.classList.add("is-animating");
+    };
+
+    var goTo = function (i) {
+      slides[current].classList.remove("is-active");
+      current = (i + total) % total;
+      slides[current].classList.add("is-active");
+      runProgress();
+    };
+
+    var stop = function () { if (timer) { window.clearInterval(timer); timer = null; } };
+    var start = function () {
+      if (reduceMotion || total < 2) return;
+      stop();
+      timer = window.setInterval(function () { goTo(current + 1); }, 5000);
+    };
+
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", start);
+
+    runProgress();
+    start();
+  }
+
   /* ---- Reveal on scroll ---- */
   var reveals = document.querySelectorAll(".reveal");
   if (reduceMotion || !("IntersectionObserver" in window)) {

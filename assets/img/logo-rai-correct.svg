@@ -1,8 +1,0 @@
-<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-  <!-- "RAI" em azul escuro -->
-  <text x="0" y="50" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#0b1740" letter-spacing="3">RAI</text>
-  <!-- Bolinhas decorativas em azul claro -->
-  <circle cx="35" cy="8" r="3" fill="#00a8e8"/>
-  <circle cx="135" cy="8" r="3" fill="#00a8e8"/>
-  <circle cx="195" cy="8" r="3" fill="#00a8e8"/>
-</svg>
