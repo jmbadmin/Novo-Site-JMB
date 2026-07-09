@@ -302,13 +302,19 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-card);
-  background:
-    radial-gradient(120% 85% at 100% 0%, rgba(176, 137, 74, 0.22), transparent 55%),
-    linear-gradient(155deg, #1a2555 0%, var(--ink) 46%, var(--midnight) 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 30px 70px -26px rgba(11, 16, 37, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   padding: clamp(1.75rem, 3vw, 2.25rem) clamp(1.5rem, 2.5vw, 2rem) clamp(1.6rem, 2.5vw, 1.9rem);
   transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.hero-carousel::before {
+  content: "";
+  position: absolute; inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(120% 85% at 100% 0%, rgba(176, 137, 74, 0.22), transparent 55%),
+    linear-gradient(155deg, #1a2555 0%, var(--ink) 46%, var(--midnight) 100%);
+  opacity: 0.9; /* fundo do card com 10% de transparência */
 }
 .hero-carousel:hover { transform: translateY(-3px); box-shadow: 0 38px 84px -22px rgba(11, 16, 37, 0.68), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
 .hero-carousel__watermark {
@@ -316,6 +322,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   width: 62%; height: auto; aspect-ratio: 1;
   color: rgba(255, 255, 255, 0.045);
   pointer-events: none;
+  z-index: 1;
 }
 .hero-carousel__viewport { display: grid; position: relative; z-index: 1; }
 .hero-carousel__slide {
@@ -339,8 +346,9 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 .hero-carousel .tombstone:hover { transform: none; box-shadow: none; border-color: transparent; }
 .hero-carousel .tombstone__sector { color: var(--brass-tint); }
-.hero-carousel .tombstone__deal { color: #fff; font-size: 1.28rem; }
+.hero-carousel .tombstone__deal { color: #fff; font-size: 1.28rem; flex: none; }
 .hero-carousel .tombstone__logos {
+  flex: 2.5;
   background: #fff; border: 1px solid rgba(255, 255, 255, 0.65);
   box-shadow: 0 16px 34px -14px rgba(5, 8, 20, 0.55);
 }
@@ -747,13 +755,22 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 .tombstone__logo-slot img {
   height: 60px; width: auto; max-width: 100%;
+  transform: scale(var(--logo-scale, 1));
+  transform-origin: center;
+  transition: transform 0.3s var(--ease);
 }
-.tombstone__logo-slot span {
+.tombstone__logo-slot .tombstone__logo--therpol { height: 92px; } /* +30% */
+.tombstone__logo-slot .tombstone__logo--dechra { height: 108px; } /* +80% */
+.tombstone__logo-slot .tombstone__logo--patria { height: 52px; } /* -25% */
+.tombstone__logo-slot .tombstone__logo--smzto { height: 28px; } /* -30% */
+.tombstone__logo-slot .tombstone__logo--desktop { height: 48px; } /* -20% */
+.tombstone__logo-slot .tombstone__logo--starnet { height: 48px; } /* -20% */
+.tombstone__logo-slot span:not(.tombstone__logo-desc) {
   font-size: 0.58rem; color: var(--slate); display: block;
 }
-.tombstone__logo-desc {
+.tombstone__logo-slot .tombstone__logo-desc {
   font-family: var(--font-sans);
-  font-size: 0.68rem;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.01em;
   text-transform: none;

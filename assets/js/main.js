@@ -96,6 +96,27 @@
     carousel.addEventListener("focusout", start);
 
     start();
+
+    /* Enlarge logos when their white card has spare vertical room */
+    var logoBoxes = carousel.querySelectorAll(".tombstone__logos");
+    var fitLogos = function () {
+      logoBoxes.forEach(function (box) {
+        var slots = box.querySelectorAll(".tombstone__logo-slot");
+        if (!slots.length) return;
+        box.style.setProperty("--logo-scale", 1);
+        var cs = window.getComputedStyle(box);
+        var gap = parseFloat(cs.rowGap) || 0;
+        var padding = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+        var natural = gap * (slots.length - 1);
+        slots.forEach(function (slot) { natural += slot.scrollHeight; });
+        var available = box.clientHeight - padding;
+        var scale = available / natural;
+        scale = Math.min(scale, 1.3);
+        box.style.setProperty("--logo-scale", scale > 1.08 ? scale.toFixed(3) : 1);
+      });
+    };
+    fitLogos();
+    window.addEventListener("resize", fitLogos, { passive: true });
   }
 
   /* ---- Reveal on scroll ---- */
