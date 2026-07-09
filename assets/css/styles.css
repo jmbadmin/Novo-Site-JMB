@@ -371,10 +371,10 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   font-family: var(--font-mono);
   font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
   font-weight: 500;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.72);
   transition: color 0.25s var(--ease), gap 0.25s var(--ease);
 }
-.hero-carousel__link:hover { color: var(--ink); gap: 0.75rem; }
+.hero-carousel__link:hover { color: #fff; gap: 0.75rem; }
 .hero-carousel__link span { transition: transform 0.25s var(--ease); }
 .hero-carousel__link:hover span { transform: translateX(3px); }
 @media (max-width: 1023px) {
