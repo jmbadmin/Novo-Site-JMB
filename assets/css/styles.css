@@ -727,16 +727,16 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 .tombstone__logos {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 0.5rem;
+  gap: 1.5rem;
   margin-top: 1.25rem;
-  padding: 1rem 0.75rem;
+  padding: 1.25rem 0.75rem;
   border: 1px dashed var(--mist-strong);
   border-radius: var(--radius-btn);
   background: var(--surface);
 }
 .tombstone__logo-slot {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.05em;
@@ -744,13 +744,23 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   color: var(--mist-strong);
   text-align: center;
   line-height: 1.4;
-  flex: 1;
 }
 .tombstone__logo-slot img {
   height: 60px; width: auto; max-width: 100%;
 }
 .tombstone__logo-slot span {
   font-size: 0.58rem; color: var(--slate); display: block;
+}
+.tombstone__logo-desc {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--slate);
+  text-align: center;
+  line-height: 1.35;
+  max-width: 24ch;
 }
 .tombstone__logo-slot--product {
   position: relative;
