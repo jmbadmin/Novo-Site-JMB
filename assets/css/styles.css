@@ -240,6 +240,9 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 .mobile-nav[hidden] { display: none; }
 .mobile-nav.is-open { opacity: 1; transform: none; pointer-events: auto; }
+/* When menu is open, make logo and close button dark for visibility over light background */
+body:has(.mobile-nav.is-open) .site-header .brand { color: var(--ink); }
+body:has(.mobile-nav.is-open) .site-header .menu-toggle span { background: var(--ink); }
 .mobile-nav ul { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 2rem; }
 .mobile-nav ul a {
   font-family: var(--font-display);
