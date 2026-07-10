@@ -580,7 +580,25 @@ body:has(.mobile-nav.is-open) .site-header .menu-toggle span { background: var(-
 .pillar__desc { color: var(--slate); margin-top: 0.5rem; font-size: var(--fs-sm); }
 
 /* ---------- International ---------- */
-.international__copy { max-width: 46rem; }
+.international__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(2rem, 6vw, 4rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.international__copy { max-width: 46rem; flex: 1; }
+.international__logo {
+  flex: 0 0 auto;
+  width: 200px;
+  height: auto;
+  aspect-ratio: auto;
+  background-color: var(--paper);
+  padding: 0.75rem;
+  border-radius: var(--radius-card);
+  margin-right: 9.0rem;
+  margin-top: 1.5rem;
+}
 .international__map-label { margin-top: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; }
 
 /* Map card, aligned to the content container. Deliberately unpadded: the
@@ -590,23 +608,43 @@ body:has(.mobile-nav.is-open) .site-header .menu-toggle span { background: var(-
    padding to this element — wrap .worldmap itself if inset is needed. */
 .international__visual {
   aspect-ratio: 566.4 / 268.5;
-  background: var(--surface);
+  background:
+    radial-gradient(120% 85% at 100% 0%, rgba(176, 137, 74, 0.22), transparent 55%),
+    linear-gradient(155deg, #1a2555 0%, var(--ink) 46%, var(--midnight) 100%);
   border: 1px solid var(--mist);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+.international__visual::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  width: 57px;
+  height: 57px;
+  background-image: url('../img/wmaa_simbolo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* World map with office pins — structure/colors/coordinates per design handoff
    (assets/mapa/README.md). Pin color is intentionally its own token, distinct
    from the brand accent, per that spec. */
 .worldmap {
-  --wmap-pin: #1e3a5f;
-  --wmap-pin-hover: #3e6089;
+  --wmap-pin: #ffffff;
+  --wmap-pin-hover: var(--brass-tint);
   --wmap-pin-size: 11px;
   position: relative;
   width: 100%;
   height: 100%;
   font-family: Helvetica, Arial, sans-serif;
+  z-index: 1;
 }
 .worldmap__land {
   position: absolute; inset: 0;
@@ -647,7 +685,7 @@ body:has(.mobile-nav.is-open) .site-header .menu-toggle span { background: var(-
   border-radius: 50%;
   background: var(--wmap-pin);
   border: 1.5px solid #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35), 0 0 0 2px var(--brass-tint);
   box-sizing: border-box;
   transition: transform 0.15s ease, background 0.15s ease;
 }
@@ -665,7 +703,7 @@ body:has(.mobile-nav.is-open) .site-header .menu-toggle span { background: var(-
   transform: translateX(-50%);
   translate: 0 4px;
   scale: 0.96;
-  background: var(--wmap-pin);
+  background: var(--midnight);
   color: #fff;
   padding: 5px 10px;
   border-radius: 6px;
