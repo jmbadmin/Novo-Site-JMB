@@ -119,6 +119,61 @@
     window.addEventListener("resize", fitLogos, { passive: true });
   }
 
+  /* ---- Transactions page carousel (transacoes.html) ---- */
+  var txCarousel = document.querySelector("[data-transactions-carousel]");
+  if (txCarousel) {
+    var txTrack = txCarousel.querySelector("[data-transactions-track]");
+    var txItems = Array.prototype.slice.call(txTrack.children);
+    var txPrev = txCarousel.querySelector("[data-transactions-prev]");
+    var txNext = txCarousel.querySelector("[data-transactions-next]");
+    var txIndex = 0;
+    var txTimer = null;
+
+    var txVisibleCount = function () {
+      var w = window.innerWidth;
+      if (w <= 560) return 1;
+      if (w <= 820) return 2;
+      return 3;
+    };
+    var txMaxIndex = function () { return Math.max(0, txItems.length - txVisibleCount()); };
+
+    var txUpdate = function () {
+      if (!txItems.length) return;
+      var gap = parseFloat(window.getComputedStyle(txTrack).columnGap) || 0;
+      var slideWidth = txItems[0].getBoundingClientRect().width + gap;
+      txTrack.style.transform = "translateX(" + (-txIndex * slideWidth) + "px)";
+    };
+    var txGoTo = function (i) {
+      txIndex = Math.max(0, Math.min(i, txMaxIndex()));
+      txUpdate();
+    };
+    var txNextSlide = function () {
+      txIndex = txIndex >= txMaxIndex() ? 0 : txIndex + 1;
+      txUpdate();
+    };
+    var txPrevSlide = function () {
+      txIndex = txIndex <= 0 ? txMaxIndex() : txIndex - 1;
+      txUpdate();
+    };
+    var txStop = function () { if (txTimer) { window.clearInterval(txTimer); txTimer = null; } };
+    var txStart = function () {
+      if (reduceMotion || txItems.length <= txVisibleCount()) return;
+      txStop();
+      txTimer = window.setInterval(txNextSlide, 5000);
+    };
+
+    if (txNext) txNext.addEventListener("click", function () { txNextSlide(); txStart(); });
+    if (txPrev) txPrev.addEventListener("click", function () { txPrevSlide(); txStart(); });
+    txCarousel.addEventListener("mouseenter", txStop);
+    txCarousel.addEventListener("mouseleave", txStart);
+    txCarousel.addEventListener("focusin", txStop);
+    txCarousel.addEventListener("focusout", txStart);
+    window.addEventListener("resize", function () { txGoTo(txIndex); }, { passive: true });
+
+    txUpdate();
+    txStart();
+  }
+
   /* ---- Reveal on scroll ---- */
   var reveals = document.querySelectorAll(".reveal");
   if (reduceMotion || !("IntersectionObserver" in window)) {

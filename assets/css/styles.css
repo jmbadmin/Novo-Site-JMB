@@ -686,9 +686,29 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
 /* ---------- Page hero (transacoes.html) ---------- */
 .page-hero {
+  position: relative;
   padding-top: calc(var(--header-h) + clamp(2rem, 5vw, 3.5rem));
-  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(0.5rem, 1vw, 0.75rem);
+  background-image: url('../img/MAdeal.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  z-index: 0;
+}
+.page-hero > .container {
+  position: relative;
+  z-index: 1;
+}
+.page-hero .section__head { max-width: 46rem; }
+.page-hero .section__title { color: #fff; }
+.page-hero .section__lede { color: rgba(255, 255, 255, 0.82); }
 .page-hero__back {
   display: inline-flex; align-items: center; gap: 0.5rem;
   font-family: var(--font-mono);
@@ -703,12 +723,31 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
 /* ---------- Transactions / tombstones ---------- */
 .transactions { background: var(--surface); border-block: 1px solid var(--mist); }
-.transactions--page { border-top: none; padding-top: 0; }
-.tombstones {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1rem, 2vw, 1.5rem);
+.transactions--page { border-top: none; padding-top: clamp(2rem, 4vw, 3rem); margin-top: 0; }
+.transactions-carousel {
+  display: flex; align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
 }
+.transactions-carousel__viewport { flex: 1; overflow: hidden; }
+.transactions-carousel__arrow {
+  flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--mist-strong);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 1.1rem;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.transactions-carousel__arrow:hover { background: var(--ink); color: #fff; border-color: var(--ink); transform: translateY(-2px); }
+.tombstones {
+  display: flex;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  transition: transform 0.5s var(--ease);
+  will-change: transform;
+}
+.tombstones .tombstone { flex: 0 0 calc((100% - 2 * clamp(1rem, 2vw, 1.5rem)) / 3); }
 .tombstone {
   position: relative;
   background: var(--paper);
@@ -808,6 +847,107 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   color: var(--slate);
 }
 .tombstone__seal { position: absolute; top: 0.3rem; right: 0.3rem; width: 13px; height: 13px; color: var(--mist-strong); }
+
+/* ---------- Transactions page: photo-led card style ---------- */
+.transactions--page .tombstone {
+  padding: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.transactions--page .tombstone__seal { display: none; }
+.transactions--page .tombstone__image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, var(--ink) 0%, var(--midnight) 100%);
+  overflow: hidden;
+}
+.transactions--page .tombstone__image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.transactions--page .tombstone__image-mark {
+  position: absolute; top: 50%; left: 50%;
+  width: 62%; height: 62%;
+  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.08);
+}
+.transactions--page .tombstone__sector-tag {
+  position: absolute; left: 1.1rem; bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #fff;
+}
+.transactions--page .tombstone__body {
+  padding: 1.5rem 1.5rem 1.75rem;
+  display: flex; flex-direction: column; gap: 1.1rem;
+  flex: 1;
+}
+.transactions--page .tombstone__logos {
+  flex-direction: row;
+  align-items: center; justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0;
+  padding: 1rem 0.75rem;
+}
+.transactions--page .tombstone__logo {
+  height: 150px; width: auto; max-width: 150px;
+  object-fit: contain;
+  background: transparent;
+}
+
+/* Individual logo sizing using nth-child */
+/* Tombstone 1: RAI | Therpol */
+.transactions--page .tombstone:nth-child(1) .tombstone__logos > img:nth-child(1) { height: 32px; } /* RAI */
+.transactions--page .tombstone:nth-child(1) .tombstone__logos > img:nth-child(3) { height: 44px; } /* Therpol */
+
+/* Tombstone 2: Dechra | Venco */
+.transactions--page .tombstone:nth-child(2) .tombstone__logos > img:nth-child(1) { height: 60px; } /* Dechra */
+.transactions--page .tombstone:nth-child(2) .tombstone__logos > img:nth-child(3) { height: 50px; } /* Venco */
+
+/* Tombstone 3: Pátria | Cultivar */
+.transactions--page .tombstone:nth-child(3) .tombstone__logos > img:nth-child(1) { height: 32px; } /* Pátria */
+.transactions--page .tombstone:nth-child(3) .tombstone__logos > img:nth-child(3) { height: 42px; } /* Cultivar */
+
+/* Tombstone 4: SMZTO | Oralsin */
+.transactions--page .tombstone:nth-child(4) .tombstone__logos > img:nth-child(1) { height: 38px; } /* SMZTO */
+.transactions--page .tombstone:nth-child(4) .tombstone__logos > img:nth-child(3) { height: 38px; } /* Oralsin */
+
+/* Tombstone 5: DesktopHIG | Starnet */
+.transactions--page .tombstone:nth-child(5) .tombstone__logos > img:nth-child(1) { height: 32px; } /* DesktopHIG */
+.transactions--page .tombstone:nth-child(5) .tombstone__logos > img:nth-child(3) { height: 32px; } /* Starnet */
+
+.transactions--page .tombstone__logo-placeholder {
+  font-family: var(--font-mono);
+  font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--mist-strong);
+  text-align: center; line-height: 1.4;
+}
+.transactions--page .tombstone__logos-sep {
+  width: 1px;
+  height: auto;
+  background: var(--mist-strong);
+  opacity: 0.7;
+  margin-left: auto;
+  margin-right: auto;
+  align-self: center;
+}
+.transactions--page .tombstone__deal {
+  margin-top: 0;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  flex: none;
+}
+.transactions--page .tombstone__caption {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 0.85rem;
+  letter-spacing: normal;
+  text-align: left;
+  color: var(--slate);
+  margin-top: 0;
+}
+.transactions--page .tombstone__foot { margin-top: auto; }
 
 /* ---------- CTA ---------- */
 .cta { background: var(--ink); color: #fff; padding-block: clamp(4.5rem, 8vw, 8rem); position: relative; overflow: hidden; }
@@ -909,7 +1049,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   .menu-toggle { display: block; }
   .stats__grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 0; }
   .stat + .stat:nth-child(odd)::before { display: none; }
-  .tombstones { grid-template-columns: repeat(2, 1fr); }
+  .tombstones .tombstone { flex: 0 0 calc((100% - clamp(1rem, 2vw, 1.5rem)) / 2); }
   .site-footer__inner { grid-template-columns: 1fr; }
 }
 
@@ -920,7 +1060,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   .service:hover { padding-left: clamp(0.5rem, 2vw, 1.5rem); }
   .section__head--split { flex-direction: column; align-items: flex-start; }
   .section__note { max-width: none; }
-  .tombstones { grid-template-columns: 1fr; }
+  .tombstones .tombstone { flex: 0 0 100%; }
   .pillars { grid-template-columns: 1fr; }
   .cta__contacts { gap: 1.5rem; }
 }
