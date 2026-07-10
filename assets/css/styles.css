@@ -728,7 +728,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   display: flex; align-items: center;
   gap: clamp(0.75rem, 2vw, 1.25rem);
 }
-.transactions-carousel__viewport { flex: 1; overflow: hidden; }
+.transactions-carousel__viewport { flex: 1; overflow: hidden; touch-action: pan-y; }
 .transactions-carousel__arrow {
   flex: 0 0 auto;
   display: flex; align-items: center; justify-content: center;
@@ -866,14 +866,14 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   object-fit: cover;
   display: block;
 }
-.transactions--page .tombstone__image-mark {
-  position: absolute; top: 50%; left: 50%;
-  width: 62%; height: 62%;
-  transform: translate(-50%, -50%);
-  color: rgba(255, 255, 255, 0.08);
+.transactions--page .tombstone__image::after {
+  content: "";
+  position: absolute; inset: auto 0 0 0; height: 55%;
+  background: linear-gradient(to top, rgba(11, 16, 37, 0.75), transparent);
+  pointer-events: none;
 }
 .transactions--page .tombstone__sector-tag {
-  position: absolute; left: 1.1rem; bottom: 1rem;
+  position: absolute; left: 1.1rem; bottom: 1rem; z-index: 1;
   font-family: var(--font-mono);
   font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
   color: #fff;
@@ -1063,6 +1063,9 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   .tombstones .tombstone { flex: 0 0 100%; }
   .pillars { grid-template-columns: 1fr; }
   .cta__contacts { gap: 1.5rem; }
+  .page-hero { background-attachment: scroll; background-position: center top; }
+  .transactions-carousel__arrow { display: none; }
+  .transactions-carousel { gap: 0; }
 }
 
 /* ---------- Reduced motion ---------- */

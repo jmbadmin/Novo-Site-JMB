@@ -170,6 +170,33 @@
     txCarousel.addEventListener("focusout", txStart);
     window.addEventListener("resize", function () { txGoTo(txIndex); }, { passive: true });
 
+    /* Touch / swipe support */
+    var txTouchStartX = 0;
+    var txTouchDeltaX = 0;
+    var txTouching = false;
+
+    txCarousel.addEventListener("touchstart", function (e) {
+      txTouching = true;
+      txTouchStartX = e.touches[0].clientX;
+      txTouchDeltaX = 0;
+      txStop();
+    }, { passive: true });
+
+    txCarousel.addEventListener("touchmove", function (e) {
+      if (!txTouching) return;
+      txTouchDeltaX = e.touches[0].clientX - txTouchStartX;
+    }, { passive: true });
+
+    txCarousel.addEventListener("touchend", function () {
+      if (!txTouching) return;
+      txTouching = false;
+      var threshold = 40;
+      if (txTouchDeltaX <= -threshold) txNextSlide();
+      else if (txTouchDeltaX >= threshold) txPrevSlide();
+      txTouchDeltaX = 0;
+      txStart();
+    });
+
     txUpdate();
     txStart();
   }
