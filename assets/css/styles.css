@@ -1095,7 +1095,7 @@ body:has(.mobile-nav.is-open) .site-header .menu-toggle span { background: var(-
   .footer-col--nav { display: none; }
   .international__head { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
   .international__logo { width: 140px; margin-right: 0; margin-top: 0; }
-  .worldmap { --wmap-pin-size: 4px; }
+  .worldmap { --wmap-pin-size: 3px; }
 }
 
 @media (max-width: 560px) {
