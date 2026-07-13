@@ -890,11 +890,12 @@ body:has(.mobile-nav.is-open) .site-header .menu-toggle span { background: var(-
 .tombstone__seal { position: absolute; top: 0.3rem; right: 0.3rem; width: 13px; height: 13px; color: var(--mist-strong); }
 .tombstone__detail-btn {
   font-family: var(--font-mono);
-  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  font-size: 1.4rem; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--brass-text);
   background: none; border: none; cursor: pointer;
   padding: 0; margin-left: auto;
   transition: color 0.25s var(--ease);
+  line-height: 1;
 }
 .tombstone__detail-btn:hover, .tombstone__detail-btn:focus-visible {
   color: var(--brass-tint);
