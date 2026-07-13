@@ -888,6 +888,79 @@ body:has(.mobile-nav.is-open) .site-header .menu-toggle span { background: var(-
   color: var(--slate);
 }
 .tombstone__seal { position: absolute; top: 0.3rem; right: 0.3rem; width: 13px; height: 13px; color: var(--mist-strong); }
+.tombstone__detail-btn {
+  font-family: var(--font-mono);
+  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--brass-text);
+  background: none; border: none; cursor: pointer;
+  padding: 0; margin-left: auto;
+  transition: color 0.25s var(--ease);
+}
+.tombstone__detail-btn:hover, .tombstone__detail-btn:focus-visible {
+  color: var(--brass-tint);
+  outline: none;
+}
+
+/* Deal Modal */
+.deal-modal {
+  position: fixed; inset: 0; z-index: 999;
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(1rem, 2vw, 2rem);
+}
+.deal-modal[hidden] { display: none; }
+.deal-modal__overlay {
+  position: absolute; inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+.deal-modal__content {
+  position: relative; z-index: 1;
+  background: linear-gradient(155deg, #1a2555 0%, var(--ink) 46%, var(--midnight) 100%);
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 600px; width: 100%;
+  max-height: 80vh; overflow-y: auto;
+  box-shadow: 0 24px 60px -24px rgba(11, 16, 37, 0.45);
+  animation: deal-modal-in 0.3s var(--ease);
+}
+@keyframes deal-modal-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.deal-modal__close {
+  position: absolute; top: 1.5rem; right: 1.5rem; z-index: 2;
+  width: 40px; height: 40px;
+  background: none; border: none; cursor: pointer;
+  font-size: 2rem; color: rgba(255, 255, 255, 0.7);
+  display: flex; align-items: center; justify-content: center;
+  transition: color 0.25s var(--ease);
+}
+.deal-modal__close:hover {
+  color: #fff;
+}
+.deal-modal__inner {
+  padding: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+.deal-modal__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.2;
+}
+.deal-modal__body {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+.deal-modal__body p {
+  margin: 0 0 1rem 0;
+}
+.deal-modal__body p:last-child {
+  margin-bottom: 0;
+}
 
 /* ---------- Transactions page: photo-led card style ---------- */
 .transactions--page .tombstone {

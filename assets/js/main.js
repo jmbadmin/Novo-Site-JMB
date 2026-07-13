@@ -222,4 +222,66 @@
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
     reveals.forEach(function (el) { io.observe(el); });
   }
+
+  /* ---- Deal detail modal (transacoes.html) ---- */
+  var dealModal = document.querySelector('[data-deal-modal]');
+  if (dealModal) {
+    var dealData = {
+      therpol: {
+        title: 'Therpol — Tecnologia em Polímeros',
+        content: '<p>A Proquitec Therpol, empresa líder em modificadores de polímeros à base de borracha natural, realizou a venda exclusiva dos direitos sobre sua tecnologia para a RAI International, distribuidora global de polímeros plásticos.</p><p>Essa transação cross-border consolidou a posição da tecnologia Therpol nos mercados estratégicos internacionais, permitindo à RAI expandir seu portfólio em segmentos de alto valor agregado.</p><p>A JMB atuou como assessor financeiro exclusivo, navegando as complexidades da transferência de propriedade intelectual e estruturando a operação para maximizar o valor para todos os envolvidos.</p>'
+      },
+      venco: {
+        title: 'Venco — Indústria de Saúde Animal',
+        content: '<p>A Venco, empresa brasileira especializada em saúde animal, completou a venda de 100% de suas ações para a Dechra, multinacional inglesa líder global em produtos e serviços veterinários.</p><p>Essa aquisição representou uma oportunidade estratégica de consolidação do setor, permitindo à Dechra fortalecer sua presença na América Latina enquanto oferecia aos acionistas da Venco acesso aos recursos globais de uma corporação multinacional.</p><p>Como advisors sell-side exclusivos, a JMB gerenciou todo o processo de due diligence, negociação e fechamento da operação cross-border.</p>'
+      },
+      cultivar: {
+        title: 'Cultivar — Revenda de Insumos Agrícolas',
+        content: '<p>A Cultivar, distribuidora consolidada de insumos agrícolas, realizou a venda de participação majoritária para a Lavoro, holding de distribuição de insumos agrícolas do fundo Pátria.</p><p>A operação refletiu a força do negócio da Cultivar e o potencial de crescimento no setor agro, em um momento de consolidação estratégica do mercado de insumos no Brasil.</p><p>A JMB assessorou exclusivamente os acionistas da Cultivar em toda a estruturação e negociação, garantindo que os valores oferecidos refletissem o valor real do negócio e suas perspectivas de crescimento.</p>'
+      },
+      oralsin: {
+        title: 'Oralsin — Clínicas Odontológicas',
+        content: '<p>A Oralsin, rede estabelecida de clínicas odontológicas, completou a venda de 100% de suas ações para o Grupo SMZTO, holding de franquias que opera portas em múltiplos segmentos de saúde e bem-estar.</p><p>A transação permitiu à Oralsin acessar capital e expertise operacional para aceleração do crescimento, enquanto o SMZTO expandiu sua presença no setor de saúde bucal.</p><p>Como advisors sell-side, a JMB conduziu a estruturação financeira, due diligence comercial e negociação integral da transação, garantindo transição suave pós-fechamento.</p>'
+      },
+      starnet: {
+        title: 'Starnet — Provedor de Internet',
+        content: '<p>A Starnet, provedor estabelecido de acesso a internet em regiões estratégicas do Brasil, realizou a venda de 100% de suas ações para a Desktop, empresa operadora do fundo HIG Capital.</p><p>A operação consolidou a Starnet como ativo-chave no portfólio de telecom do HIG, refletindo a qualidade dos ativos de banda larga brasileiros e o potencial de consolidação do setor.</p><p>A JMB atuou como assessor financeiro exclusivo dos acionistas da Starnet, estruturando a operação e negociando os melhores termos possível com o adquirente, desde a fase de marketing até o fechamento final.</p>'
+      }
+    };
+
+    var modalTitle = document.querySelector('#deal-title');
+    var modalBody = document.querySelector('#deal-body');
+    var detailBtns = document.querySelectorAll('.tombstone__detail-btn');
+
+    var openDealModal = function (dealId) {
+      if (dealData[dealId]) {
+        modalTitle.textContent = dealData[dealId].title;
+        modalBody.innerHTML = dealData[dealId].content;
+        dealModal.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    var closeDealModal = function () {
+      dealModal.hidden = true;
+      document.body.style.overflow = '';
+    };
+
+    detailBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var dealId = btn.getAttribute('data-deal-id');
+        openDealModal(dealId);
+      });
+    });
+
+    dealModal.querySelectorAll('[data-modal-close]').forEach(function (closer) {
+      closer.addEventListener('click', closeDealModal);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !dealModal.hidden) {
+        closeDealModal();
+      }
+    });
+  }
 })();
